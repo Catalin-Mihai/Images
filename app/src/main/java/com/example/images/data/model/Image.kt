@@ -1,7 +1,7 @@
 package com.example.images.data.model
 
 data class Image(
-    val id: Int? = null,
-    val name: String? = null,
+    val id: Int,
+    val name: String,
     val category: Category? = null
 )

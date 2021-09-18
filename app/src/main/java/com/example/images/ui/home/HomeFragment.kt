@@ -9,6 +9,7 @@ import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.images.R
+import com.example.images.data.model.Category
 import com.example.images.databinding.FragmentHomeBinding
 import com.example.images.data.model.Image
 
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
         return categoryTV
     }
 
-    private fun populateImagesByCategories(images: List<Image>){
+    /*private fun populateImagesByCategories(images: List<Image>){
 
         //We need to group up the images by category first
         val groups = images.groupBy { it.category }
@@ -102,11 +103,32 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }*/
+
+    private fun populateCategoryImages(categories: Map<Category, List<Image>>){
+
+        categories.entries.forEach { pair ->
+
+            val categoryName = pair.key.name
+
+            //Add category textview
+            gridLayout.addView(makeCategoryTextView(categoryName))
+
+            //Add the images associated with the category
+            pair.value.forEachIndexed { index, image ->
+
+                val imageElement = makeGenericImage(image.name, index % 3)
+                gridLayout.addView(imageElement)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeViewModel.livePhotosByCategories.observe(viewLifecycleOwner, {
+            populateCategoryImages(it)
+        })
         //Populate the Grid View dynamically
 
 //        populateImagesByCategories()

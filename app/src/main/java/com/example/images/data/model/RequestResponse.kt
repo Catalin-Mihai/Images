@@ -14,4 +14,5 @@ data class RequestResponse(
 
     @Json(name = "best_images")
     val bestImages: List<Int>
+
 )
