@@ -7,24 +7,114 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment" >
 
-    <com.example.images.ui.custom.SlidingBanner
+    <com.example.images.ui.custom.sliding_banner.SlidingBanner
+        android:id="@+id/slidingBanner"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/text_home"
+    </com.example.images.ui.custom.sliding_banner.SlidingBanner>
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Home"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slidingBanner">
+
+            <GridLayout
+                android:id="@+id/gridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:useDefaultMargins="true">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image1"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="3"
+                    android:text="Categorie 1"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    />
+
+                <!--
+
+                -->
+
+            </GridLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

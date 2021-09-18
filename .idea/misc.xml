@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/drawable-v24/outline_star_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/drawable/tab_indicator_default.xml" value="0.2703125" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.2703125" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/drawable/tab_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/activity_main.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_best_images.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_home.xml" value="0.14688057040998218" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_my_images.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/generic_square_image.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/item_sliding_banner.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/layout/view_sliding_banner.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Catalin/AndroidStudioProjects/Images/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
