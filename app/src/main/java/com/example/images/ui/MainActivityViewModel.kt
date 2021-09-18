@@ -1,4 +1,4 @@
-package com.example.images.ui.home
+package com.example.images.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,10 +9,8 @@ import com.example.images.data.api.ApiBuilder
 import com.example.images.data.model.Category
 import com.example.images.data.model.Image
 import kotlinx.coroutines.launch
-import org.json.JSONException
-import java.lang.Exception
 
-class HomeViewModel : ViewModel() {
+class MainActivityViewModel : ViewModel() {
 
     //The ViewModel will load before the MainActivity is loaded.
     //So the request will be sent when the app starts.

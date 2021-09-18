@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.example.images.databinding.FragmentBestImagesBinding
+import com.example.images.ui.MainActivityViewModel
 
 class BestImagesFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: BestImagesViewModel
+    private val viewModel: MainActivityViewModel by activityViewModels()
     private var _binding: FragmentBestImagesBinding? = null
 
     // This property is only valid between onCreateView and
@@ -21,14 +22,9 @@ class BestImagesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(BestImagesViewModel::class.java)
-
+    ): View {
         _binding = FragmentBestImagesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

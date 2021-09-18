@@ -7,16 +7,16 @@ import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.example.images.R
 import com.example.images.data.model.Category
-import com.example.images.databinding.FragmentHomeBinding
 import com.example.images.data.model.Image
+import com.example.images.databinding.FragmentHomeBinding
+import com.example.images.ui.MainActivityViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private lateinit var _gridLayout: GridLayout
+    private val viewModel: MainActivityViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -29,11 +29,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -126,7 +122,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.livePhotosByCategories.observe(viewLifecycleOwner, {
+        viewModel.livePhotosByCategories.observe(viewLifecycleOwner, {
             populateCategoryImages(it)
         })
         //Populate the Grid View dynamically
