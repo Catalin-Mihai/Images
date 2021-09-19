@@ -13,6 +13,7 @@ import com.example.images.databinding.FragmentGenericImageListRecyclerBinding
 import com.example.images.ui.MainActivityViewModel
 import com.example.images.ui.custom.GenericImage
 
+//Generic class for the recycler view screens where there is only a single list with different datasets.
 abstract class GenericImageListRecyclerFragment: Fragment() {
 
     private val viewModel: MainActivityViewModel by activityViewModels()

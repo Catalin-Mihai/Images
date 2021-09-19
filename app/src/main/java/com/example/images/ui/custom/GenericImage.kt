@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.images.R
 import com.example.images.util.toPx
 
-
+//Custom image element for easier use across the development flow.
 class GenericImage @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -17,7 +17,6 @@ class GenericImage @JvmOverloads constructor(
 
     private var imageText: TextView
     private var parentElement: View
-//    private var nameTextSize: Float
 
     init {
         parentElement = View.inflate(context, com.example.images.R.layout.generic_square_image, this)
@@ -42,7 +41,6 @@ class GenericImage @JvmOverloads constructor(
     //the text click listener won't let the view click listener to trigger
     //(as it is theoretically defined and stops the click event propagation)
     //So, let's use the listener only if we need to.
-
     var onImageTextClick: ((View) -> Unit)? = null
         set(value) {
             field = value

@@ -9,14 +9,10 @@ import com.example.images.data.api.ApiBuilder
 import com.example.images.data.model.Category
 import com.example.images.data.model.Image
 import kotlinx.coroutines.launch
+import org.json.JSONException
 
 class MainActivityViewModel : ViewModel() {
 
-    //The ViewModel will load before the MainActivity is loaded.
-    //So the request will be sent when the app starts.
-
-    val liveAllImages = MutableLiveData<List<Image>>()
-    val liveCategories = MutableLiveData<List<Category>>()
     val livePhotosByCategories = MutableLiveData<Map<Category, List<Image>>>()
     val liveMyImages = MutableLiveData<List<Image>>()
     val liveBestImages = MutableLiveData<List<Image>>()
@@ -24,16 +20,22 @@ class MainActivityViewModel : ViewModel() {
     init {
         viewModelScope.launch {
 
+            //The ViewModel will load before the MainActivity is loaded.
+            //So the request will be sent when the app starts.
+            try {
+                ApiBuilder.instance.testPostRequest("en", "1")
+            }
+            catch (e: Exception){
+                Log.e("Test request", e.toString())
+            }
 
+            try {
                 val data = ApiBuilder.instance.getImagesData()!!
 
                 val allImages = data.allImages
                 val categories = data.categories
                 val myImages = data.myImages
                 val bestImages = data.bestImages
-
-                liveAllImages.postValue(allImages)
-                liveCategories.postValue(categories)
 
                 fun getImageById(imageId: Int): Image = allImages.find { image -> image.id == imageId }!!
 
@@ -57,12 +59,12 @@ class MainActivityViewModel : ViewModel() {
                 liveBestImages.postValue(bestImagesList)
 
 
-                Log.e("Response", data.toString())
+//                Log.e("Response", data.toString())
+
+            } catch (e: Exception){
+                Log.e("Request Exception", e.toString())
+            }
         }
     }
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
 }

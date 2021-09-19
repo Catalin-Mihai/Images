@@ -1,13 +1,14 @@
 package com.example.images.ui.home
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.marginTop
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -44,9 +45,6 @@ class HomeFragment : Fragment() {
                                  onTextClickListener: ((View) -> Unit)? = null): View {
 
         //Inflate the square image
-        /*val genericImage = View.inflate(context, R.layout.generic_square_image, null)
-        val imageText = genericImage.findViewById(R.id.imageText) as TextView
-        imageText.text = text*/
         val genericImage = GenericImage(requireContext())
         genericImage.changeText(text)
 
@@ -65,6 +63,7 @@ class HomeFragment : Fragment() {
         return genericImage
     }
 
+    //For every category, the category title will occupy 3 columns to simulate a edge to edge title.
     private fun makeCategoryTextView(text: String): TextView {
 
         val categoryTV = TextView(context)
@@ -90,42 +89,14 @@ class HomeFragment : Fragment() {
         return categoryTV
     }
 
-    /*private fun populateImagesByCategories(images: List<Image>){
-
-        //We need to group up the images by category first
-        val groups = images.groupBy { it.category }
-
-        groups.entries.forEach { pair ->
-
-            //NonNull category
-            pair.key?.let { category ->
-
-                //Valid category name. Don't display the images of a null-named category
-                category.name?.let { categoryName ->
-
-                    //Add category textview
-                    gridLayout.addView(makeCategoryTextView(categoryName))
-
-                    //Add the images associated with the category
-                    pair.value.forEachIndexed { index, image ->
-
-                        //We need a valid name for the image because we need that name later in another actions.
-                        //Let's ignore the empty ones for now.
-                        image.name?.let {
-                            val imageElement = makeGenericImage(image.name, index % 3)
-                            gridLayout.addView(imageElement)
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-
     private fun goToImageDetailsFragment(imageName: String){
         val action = HomeFragmentDirections.actionNavigationHomeToImageDetailsFragment(imageName)
         findNavController().navigate(action)
     }
 
+    //We have to build programmatically the Grid View as the requirement is to use a Scroll View
+    // (It could be easier achieved with RecyclerView).
+    //So let's build a grid view with 3 columns. Every picture will occupy a single slot from a total of 3.
     private fun populateCategoryImages(categories: Map<Category, List<Image>>){
 
         categories.entries.forEach { pair ->
@@ -152,6 +123,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //When request response is ready, populate the Scroll View
         viewModel.livePhotosByCategories.observe(viewLifecycleOwner, {
             populateCategoryImages(it)
         })
