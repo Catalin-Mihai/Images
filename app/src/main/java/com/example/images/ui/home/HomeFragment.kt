@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
         categoryTV.text = text
         categoryTV.gravity = Gravity.CENTER
 
+
         val params = GridLayout.LayoutParams()
         //Occupies 3 slots on the row and has weight of 1
         params.columnSpec = GridLayout.spec(0, 3, 1f)
@@ -125,16 +126,6 @@ class HomeFragment : Fragment() {
         viewModel.livePhotosByCategories.observe(viewLifecycleOwner, {
             populateCategoryImages(it)
         })
-        //Populate the Grid View dynamically
-
-//        populateImagesByCategories()
-
-/*        gridLayout.addView(makeCategoryTextView("Categorie 1"))
-        gridLayout.addView(makeCategoryTextView("Categorie 2"))
-        gridLayout.addView(makeGenericImage("Image1", 0))
-        gridLayout.addView(makeGenericImage("Image2", 1))
-        gridLayout.addView(makeGenericImage("Image3", 2))
-        gridLayout.addView(makeGenericImage("Image4", 0))*/
     }
 
     override fun onDestroyView() {

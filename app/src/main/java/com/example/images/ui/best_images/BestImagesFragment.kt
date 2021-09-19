@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.images.databinding.FragmentBestImagesBinding
 import com.example.images.ui.MainActivityViewModel
+import com.example.images.ui.image_details.ImageRecyclerViewAdapter
 
 class BestImagesFragment : Fragment() {
 
@@ -25,6 +27,16 @@ class BestImagesFragment : Fragment() {
     ): View {
         _binding = FragmentBestImagesBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.liveBestImages.observe(viewLifecycleOwner, {
+            val adapter = ImageRecyclerViewAdapter(it)
+            binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.recyclerView.adapter = adapter
+        })
     }
 
     override fun onDestroyView() {

@@ -18,6 +18,8 @@ class MainActivityViewModel : ViewModel() {
     val liveAllImages = MutableLiveData<List<Image>>()
     val liveCategories = MutableLiveData<List<Category>>()
     val livePhotosByCategories = MutableLiveData<Map<Category, List<Image>>>()
+    val liveMyImages = MutableLiveData<List<Image>>()
+    val liveBestImages = MutableLiveData<List<Image>>()
 
     init {
         viewModelScope.launch {
@@ -27,24 +29,35 @@ class MainActivityViewModel : ViewModel() {
 
                 val allImages = data.allImages
                 val categories = data.categories
+                val myImages = data.myImages
+                val bestImages = data.bestImages
 
                 liveAllImages.postValue(allImages)
                 liveCategories.postValue(categories)
+
+                fun getImageById(imageId: Int): Image = allImages.find { image -> image.id == imageId }!!
 
                 //Let's group the images by categories
                 val imagesByCategories = categories.map { //List of Pairs of <Category, List<ImagesOfThatCategory>>
 
                     Pair(it, it.imagesIds.map { imageId -> //Get the Image object by imageId
-                        allImages.find { image -> image.id == imageId }!!
+                        getImageById(imageId)
                     })
 
                 }.toMap() //Convert the list of pairs to Map
-
                 livePhotosByCategories.postValue(imagesByCategories)
+
+
+                //Let's get my images list
+                val myImagesList = myImages.map { imageId -> getImageById(imageId) }
+                liveMyImages.postValue(myImagesList)
+
+                //Let's get my images list
+                val bestImagesList = bestImages.map { imageId -> getImageById(imageId) }
+                liveBestImages.postValue(bestImagesList)
+
+
                 Log.e("Response", data.toString())
-
-
-
         }
     }
 
