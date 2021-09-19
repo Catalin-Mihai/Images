@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.*
 import android.widget.GridLayout
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginTop
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -68,6 +70,8 @@ class HomeFragment : Fragment() {
 
         categoryTV.text = text
         categoryTV.gravity = Gravity.CENTER
+        categoryTV.textSize = 20f
+        categoryTV.setTextColor(ResourcesCompat.getColor(resources, R.color.black, null))
 
 
         val params = GridLayout.LayoutParams()
@@ -75,7 +79,10 @@ class HomeFragment : Fragment() {
         params.columnSpec = GridLayout.spec(0, 3, 1f)
         params.width = 0.toPx
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        params.setMargins(8.toPx)
+        params.topMargin = 24.toPx
+        params.leftMargin = 8.toPx
+        params.rightMargin = 8.toPx
+        params.bottomMargin = 8.toPx
 
         categoryTV.layoutParams = params
 

@@ -1,21 +1,13 @@
-package com.example.images.ui.image_details
+package com.example.images.ui.generic
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.images.data.model.Image
-import com.example.images.databinding.FragmentImageDetailsBinding
 import com.example.images.databinding.ImageListSingleItemBinding
 import com.example.images.ui.custom.GenericImage
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class ImageRecyclerViewAdapter(
     private val values: List<Image>,
     private val onViewClickListener: ((View) -> Unit)? = null

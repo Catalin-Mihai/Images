@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.images.data.model.Image
 import com.example.images.databinding.FragmentImageDetailsBinding
-import com.example.images.databinding.FragmentMyImagesBinding
 
 /**
  * A fragment representing a list of Items.

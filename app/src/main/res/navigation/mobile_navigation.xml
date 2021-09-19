@@ -29,7 +29,7 @@
         android:id="@+id/navigation_best_images"
         android:name="com.example.images.ui.best_images.BestImagesFragment"
         android:label="@string/title_best_images"
-        tools:layout="@layout/fragment_my_images" >
+        tools:layout="@layout/fragment_generic_image_list_recycler" >
         <action
             android:id="@+id/action_navigation_best_images_to_imageDetailsFragment"
             app:destination="@id/imageDetailsFragment" />
