@@ -18,6 +18,7 @@ import com.example.images.data.model.Image
 import com.example.images.databinding.FragmentHomeBinding
 import com.example.images.ui.MainActivityViewModel
 import com.example.images.ui.custom.GenericImage
+import com.example.images.util.toPx
 
 class HomeFragment : Fragment() {
 
@@ -162,8 +163,3 @@ class HomeFragment : Fragment() {
     }
 }
 
-val Float.toPx get() = this * Resources.getSystem().displayMetrics.density
-val Float.toDp get() = this / Resources.getSystem().displayMetrics.density
-
-val Int.toPx get() = (this * Resources.getSystem().displayMetrics.density).toInt()
-val Int.toDp get() = (this / Resources.getSystem().displayMetrics.density).toInt()

@@ -2,15 +2,12 @@ package com.example.images.ui.custom
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.viewpager2.widget.ViewPager2
 import com.example.images.R
-import com.example.images.ui.custom.sliding_banner.ImagePageAdapter
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.images.util.toPx
+
 
 class GenericImage @JvmOverloads constructor(
     context: Context,
@@ -20,10 +17,24 @@ class GenericImage @JvmOverloads constructor(
 
     private var imageText: TextView
     private var parentElement: View
+//    private var nameTextSize: Float
 
     init {
-        parentElement = View.inflate(context, R.layout.generic_square_image, this)
-        imageText = parentElement.findViewById(R.id.imageText) as TextView
+        parentElement = View.inflate(context, com.example.images.R.layout.generic_square_image, this)
+        imageText = parentElement.findViewById(com.example.images.R.id.imageText) as TextView
+
+
+        //Custom text size because the auto scale feature works only for API26+
+        context.theme.obtainStyledAttributes(
+            attrs, R.styleable.GenericImage, 0, 0
+        ).apply {
+            try {
+                val nameTextSize = getDimensionPixelSize(R.styleable.GenericImage_nameTextSize, 8.toPx)
+                imageText.textSize = nameTextSize.toFloat()
+            } finally {
+                recycle()
+            }
+        }
     }
 
     //Make the click listener available only if they are required
