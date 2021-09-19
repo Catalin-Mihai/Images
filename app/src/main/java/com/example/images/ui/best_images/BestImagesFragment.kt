@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.images.databinding.FragmentBestImagesBinding
 import com.example.images.ui.MainActivityViewModel
+import com.example.images.ui.custom.GenericImage
 import com.example.images.ui.image_details.ImageRecyclerViewAdapter
 
 class BestImagesFragment : Fragment() {
@@ -29,11 +31,20 @@ class BestImagesFragment : Fragment() {
         return binding.root
     }
 
+    private fun goToImageDetailsFragment(imageName: String){
+        val action = BestImagesFragmentDirections.actionNavigationBestImagesToImageDetailsFragment(imageName)
+        findNavController().navigate(action)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.liveBestImages.observe(viewLifecycleOwner, {
-            val adapter = ImageRecyclerViewAdapter(it)
+            val adapter = ImageRecyclerViewAdapter(it) { view ->
+                val genericImage = view as GenericImage
+                val imageName = genericImage.getText().toString()
+                goToImageDetailsFragment(imageName = imageName)
+            }
             binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             binding.recyclerView.adapter = adapter
         })

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.images.data.model.Image
 import com.example.images.databinding.FragmentImageDetailsBinding
 import com.example.images.databinding.FragmentMyImagesBinding
@@ -14,7 +15,7 @@ import com.example.images.databinding.FragmentMyImagesBinding
  */
 class ImageDetailsFragment : Fragment() {
 
-    private var imageName: String? = null
+    private lateinit var imageName: String
     private var _binding: FragmentImageDetailsBinding? = null
 
     private val binding get() = _binding!!
@@ -23,7 +24,7 @@ class ImageDetailsFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            imageName = it.getString(ARG_IMAGE_NAME)
+            imageName = it.getString(ARG_IMAGE_NAME)!!
         }
     }
 
@@ -35,13 +36,24 @@ class ImageDetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Set the image text
+        binding.genericImage.changeText(imageName)
+
+        //Go back if we touch the image name
+        binding.genericImage.onImageTextClick = { _ ->
+            findNavController().navigateUp()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
-
         const val ARG_IMAGE_NAME = "imageName"
 
         @JvmStatic

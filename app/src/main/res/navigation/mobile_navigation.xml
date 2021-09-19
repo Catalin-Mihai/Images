@@ -9,17 +9,37 @@
         android:id="@+id/navigation_home"
         android:name="com.example.images.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_my_images"
         android:name="com.example.images.ui.my_images.MyImagesFragment"
         android:label="@string/title_my_images"
-        tools:layout="@layout/fragment_best_images" />
+        tools:layout="@layout/fragment_best_images" >
+        <action
+            android:id="@+id/action_navigation_my_images_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_best_images"
         android:name="com.example.images.ui.best_images.BestImagesFragment"
         android:label="@string/title_best_images"
-        tools:layout="@layout/fragment_my_images" />
+        tools:layout="@layout/fragment_my_images" >
+        <action
+            android:id="@+id/action_navigation_best_images_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetailsFragment"
+        android:name="com.example.images.ui.image_details.ImageDetailsFragment"
+        android:label="ImageDetailsFragment" >
+        <argument
+            android:name="imageName"
+            app:argType="string" />
+    </fragment>
 </navigation>
